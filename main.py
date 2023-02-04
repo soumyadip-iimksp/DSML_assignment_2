@@ -1,3 +1,9 @@
+__author__ = "Soumyadip Majumder"
+__version__ = "1.0.0"
+__maintainer__ = "Soumyadip Majumder"
+__status__ = "Complete"
+__date__ = "04 Feb 2023"
+
 from data_prep import DataPreP
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import GridSearchCV
