@@ -9,8 +9,12 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_auc_score
 import numpy as np
+import pickle
+import os
 import warnings
 warnings.filterwarnings("ignore")
+
+SAVEPATH = "./models"
 
 dp = DataPreP("dv_logtistic")
 X_train, y_train, X_val, y_val, X_test, y_test = dp.create_datasets("./pima-indians-diabetes.csv")
@@ -18,7 +22,6 @@ X_train, y_train, X_val, y_val, X_test, y_test = dp.create_datasets("./pima-indi
 print({val:list(y_train).count(val) for val in [0, 1]})
 print({val:list(y_val).count(val) for val in [0, 1]})
 print({val:list(y_test).count(val) for val in [0, 1]})
-
 
 #   Logistic Regression
 print("Logistic Regression")
@@ -49,6 +52,11 @@ print("Test Recall: ", np.round(test_rec, 3))
 test_auc_roc = roc_auc_score(y_test, test_pred)
 print("ROC AUC Score: ", np.round(test_auc_roc, 3))
 
+
+if not os.path.exists(SAVEPATH):
+        os.makedirs(SAVEPATH)
+with open(f"{SAVEPATH}/logistic_regression.bin", "wb") as f_out:
+    pickle.dump(log_reg, f_out)
 
 #   Regularized Logistic Regression Model
 
@@ -98,6 +106,11 @@ print("Test Recall: ", np.round(test_rec, 3))
 test_auc_roc = roc_auc_score(y_test, test_pred)
 print("ROC AUC Score: ", np.round(test_auc_roc, 3))
 
+
+if not os.path.exists(SAVEPATH):
+        os.makedirs(SAVEPATH)
+with open(f"{SAVEPATH}/regularized_logistic_regression.bin", "wb") as f_out:
+    pickle.dump(log_reg_regularized, f_out)
 
 # Output
 """
