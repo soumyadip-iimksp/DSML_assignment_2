@@ -2,4 +2,4 @@
 
 Install pipenv: `pip install pipenv` <br>
 Install dependency libraries - `pipenv install` <br>
-Run the code: `pipenv run python <filename>.py`
+Run the code: `pipenv run python main.py`
